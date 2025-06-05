@@ -4,8 +4,9 @@ import { ethers } from 'ethers';
 import RiddleFactoryAbi from '../utils/RiddleFactory.json';
 import RiddleAbi from '../utils/Riddle.json';
 
-// Alamat kontrak RiddleFactory
-const CONTRACT_ADDRESS = "0x9C447574116BD6a99Ed4d025331ba2a6DE5E8B61";
+// Alamat kontrak RiddleFactory diambil dari environment variable
+const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
+console.log("RiddleDetail.jsx - Using VITE_CONTRACT_ADDRESS from env:", import.meta.env.VITE_CONTRACT_ADDRESS); // Log untuk debugging
 
 const RiddleDetail = ({ provider, account }) => {
   const { address } = useParams();

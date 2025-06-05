@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 import RiddleFactoryAbi from '../utils/RiddleFactory.json';
 
-// Alamat kontrak RiddleFactory
-const CONTRACT_ADDRESS = "0x9C447574116BD6a99Ed4d025331ba2a6DE5E8B61";
+// Alamat kontrak RiddleFactory diambil dari environment variable
+const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
+console.log("CreateRiddle.jsx - Using VITE_CONTRACT_ADDRESS from env:", import.meta.env.VITE_CONTRACT_ADDRESS); // Log untuk debugging
 
 const CreateRiddle = ({ provider, account }) => {
   const navigate = useNavigate();
