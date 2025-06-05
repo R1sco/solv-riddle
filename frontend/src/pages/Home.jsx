@@ -4,7 +4,8 @@ import { ethers } from 'ethers';
 import RiddleFactoryAbi from '../utils/RiddleFactory.json';
 import RiddleAbi from '../utils/Riddle.json';
 
-const CONTRACT_ADDRESS = "0x9C447574116BD6a99Ed4d025331ba2a6DE5E8B61"; // RiddleFactory contract address on Sepolia testnet
+const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
+console.log("Using VITE_CONTRACT_ADDRESS from env:", import.meta.env.VITE_CONTRACT_ADDRESS); // Log untuk debugging
 
 const RiddleCard = ({ riddle }) => {
   const { address, text, reward, isSolved, solver } = riddle;

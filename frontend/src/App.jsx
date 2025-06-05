@@ -51,7 +51,22 @@ function AppContent() {
           console.error("Error initializing ethers:", error);
         }
       } else {
-        alert('MetaMask not detected! Please install MetaMask to use this application.');
+        console.log("MetaMask not detected. Attempting to connect to public RPC.");
+        const rpcUrlFromEnv = import.meta.env.VITE_RPC_URL;
+        if (rpcUrlFromEnv) {
+          try {
+            console.log("Using public RPC URL from env:", rpcUrlFromEnv);
+            const publicProvider = new ethers.JsonRpcProvider(rpcUrlFromEnv);
+            setProvider(publicProvider);
+            // Note: We might not get an 'account' this way without user interaction,
+            // but the app can at least read data from contracts.
+          } catch (rpcError) {
+            console.error("Error initializing public RPC provider:", rpcError);
+            alert('Failed to connect to public RPC. Read-only mode might be limited.');
+          }
+        } else {
+          alert('MetaMask not detected and no public RPC URL configured. Please install MetaMask or configure an RPC URL.');
+        }
       }
     };
 
